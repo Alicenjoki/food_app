@@ -1,0 +1,79 @@
+{% extends 'partials/base.html' %}
+{%load crispy_forms_tags%}
+{% block title %}adm_drinks page{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row" style="margin-top: 60px;">
+            <div class="col-md-7">
+    
+            </div>
+    
+            <div class="col-md-5">
+                <div class="py-3 text-center">
+                    <a class="pr-5" style="color: black;" href="{% url 'admbreakfast' %}">BREAKFAST</a>
+                    <a class="pr-5" style="color: black;" href="{% url 'admlunch' %}">LUNCH</a>
+                    <a class="pr-5" style="color: black;" href="{% url 'admdinner' %}">DINNER</a>
+                    <a style="color: black;" href="{% url 'admdrinks' %}">DRINKS</a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="upper" style="margin: auto; width: 100%; display: flex; text-align: center; justify-content: space-between;  ">
+        
+                <div class="right mb-2" style="margin: auto; width: 90%;">
+                    <h3>Breakfast Table</h3>
+                    <hr>
+                    <div class="border bg-white ml-2" style="height: 470px; overflow-y: scroll;">
+        
+                        <table class="table">
+                            <thead>
+                                <th style="padding-top: 20px;" scope="col" >{{forloop.counter}}</th>
+                                <th scope="col" >Food Item</th>
+                                <th scope="col" >Category</th>
+                                <th scope="col">Course</th>
+                                <th scope="col" >Price</th>
+                                <th scope="col">Action</th>
+                            </thead>
+        
+                            <tbody>
+                                {% for food in foods %}
+                                {%if food.meal.name == 'Breakfast'%}    
+                                <tr>
+                                    <td><img src="{{food.image.url}}" alt="" height="60px" width="80px"></td>
+                                    <td style="padding-top: 30px;">{{food.name}}</td>
+                                    <td style="padding-top: 30px;">{{food.meal}}</td>
+                                    <td style="padding-top: 30px;">{{food.course}}</td>
+                                    <td style="padding-top: 30px;">${{food.price}}</td>
+                                    <td style="padding-top: 15px;">
+                                        <a class="btn btn-warning" href="{% url 'edit_admbreakfast' food.id %}"><i class="fas fa-edit"></i></a>
+                                        <a class="btn btn-danger" href="{% url 'delete_admbreakfast' food.id %}"><i class="fa fa-trash"></i></a>
+                                    </td>
+                                </tr>
+                                {%endif%}
+                                {% endfor %}
+        
+                                <!-- <tr>
+                                    <td><img src="/media/cosmopolitan.jpg" alt="" height="60px" width="80px"></td>
+                                    <td style="padding-top: 25px;">Bees-knees drink</td>
+                                    <td>Breakfast</td>
+                                    <td>$40</td>
+                                </tr>
+        
+                                <tr>
+                                    <td><img src="/media/cranberry-whiskey-sour.jpg" alt="" height="60px" width="80px"></td>
+                                    <td style="padding-top: 25px;">Bees-knees drink</td>
+                                    <td>Breakfast</td>
+                                    <td>$40</td>
+                                </tr> -->
+        
+                                
+                            </tbody>
+        
+                        </table>
+        
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

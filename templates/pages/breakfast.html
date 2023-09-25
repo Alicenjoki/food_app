@@ -1,0 +1,38 @@
+{% extends 'partials/base.html' %}
+
+{% block title %}Breakfast page{% endblock %}
+
+{% block content %}
+    {%include 'partials/category.html' %}
+    <!-- <style>
+        .card-img-top{
+            
+            
+            
+        }
+    </style> -->
+    <h2 class="text-center">Breakfast Menu</h2>
+    <div class="row mb-3">
+            {% for food in foods %}
+            {% if food.meal.name == "Breakfast" %}
+                <div class="col-md-4 d-flex align-items-stretch mb-5">
+                    <div class="card text-left h-100">
+                    <img class="card-img-top img-fluid" src="{{food.image.url}}" alt="" style="width: 300px;height: 20vw;object-fit: cover;">
+                    <div class="card-body">
+                        <h4 class="card-title">{{food.name}}</h4>
+                        <button value="{{food.id}}" class="btn btn-outline-secondary" href="">Order</button>
+                        <!-- <a class="btn btn-outline-success" href="">View</a> -->
+                        <h3 style="display: inline-block; float: right;">${{food.price}}</h3>
+                    </div>
+                    </div>
+                </div>
+            {%endif%}
+            {% endfor %}
+
+        
+
+        
+        
+        </div>
+    </div>
+{%endblock%}

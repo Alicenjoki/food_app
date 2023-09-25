@@ -1,0 +1,67 @@
+{% extends 'partials/base.html' %}
+
+{% block title %}Home page{% endblock %}
+
+{% block content %}
+    <div class="row" style="margin-top: 100px;">
+        <div class="col-md-12">
+            <div class="border bg-white">
+                <a class="btn btn-outline-secondary mt-2 ml-2" href="{% url 'home' %}"> <i class="fa-solid fa-arrow-left-long"></i>  Continue Ordering</a>
+                <br>
+                <br>
+
+                <table class="table">
+                    <tr>
+                        <th style="padding-top: 20px;">Items: <strong>{{cart.no_items}}</strong></th>
+                        <th style="padding-top: 20px;">Price: <strong>$ {{cart.total_price}}</strong></th>
+                        <th><a class="btn btn-success" style="float: right; " href="">checkout</a></th>
+                    </tr>
+                </table>
+
+            </div>
+        </div>
+
+
+
+    </div>
+
+    <div class="row mb-5" style="margin-top: 100px;">
+        <div class="col-md-12">
+            <div class="border bg-white">
+
+                <table class="table">
+                    <thead>
+                        <th style="padding-top: 20px;" scope="col" ></th>
+                        <th scope="col" >Item</th>
+                        <th scope="col" >Quantity</th>
+                        <th scope="col" >Unit Price</th>
+                        <th scope="col">Price</th>
+
+                    </thead>
+                    
+                    <tbody>
+                        {% for cartitem in cartitems %}
+                        <tr>
+                            <td><img src="{{cartitem.food.image.url}}" alt="" height="60px" width="80px"></td>
+                            <td style="padding-top: 15px;">{{cartitem.food.name}}</td>
+                            <td>{{cartitem.quantity}}</td>
+                            <td>${{cartitem.food.price}}</td>
+                            <td>$ {{cartitem.price}}</td>
+                        </tr>
+
+                        {%endfor%}  
+                    </tbody>
+                    
+                </table>
+
+                <table class="table" >
+                    <tr>
+                        <th style="padding-top: 20px;"></th>
+                        <th><h5 style="float: right; margin-right: 100px;" href="">TOTAL: <strong>${{cart.total_price}}</strong></h5></th>
+                    </tr>
+                </table>
+
+
+        </div>
+    </div>
+{% endblock %}
